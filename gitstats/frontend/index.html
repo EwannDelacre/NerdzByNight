@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques GitHub</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>📊 Statistiques GitHub</h1>
+    </header>
+    <main>
+        <section class="charts-container">
+            <div class="chart-item">
+                <h2>Histogramme des commits par membre</h2>
+                <canvas id="commitBarChart"></canvas>
+            </div>
+            <div class="chart-item">
+                <h2>Camembert des commits par membre</h2>
+                <canvas id="commitPieChart"></canvas>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Généré dynamiquement à partir de l'API GitHub | Mis à jour toutes les 60 secondes.</p>
+    </footer>
+    <script src="/frontend/js/app.js"></script>
+    <script src="/frontend/js/charts.js"></script>
+</body>
+</html>
