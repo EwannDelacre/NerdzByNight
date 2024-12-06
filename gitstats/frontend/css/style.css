@@ -82,6 +82,44 @@ canvas {
     border-radius: 0 0 10px 10px;
 }
 
+/* Ajustez la taille des éléments chart-item pour donner plus d'espace à la légende */
+.chart-item {
+    flex: 1 1 calc(50% - 20px);
+    min-width: 400px; /* Augmenté de 300px à 400px */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style spécifique pour le graphique des langages */
+#languagesChart {
+    max-height: 400px;
+    width: 100% !important; /* Force la largeur complète */
+    margin-right: 20px; /* Ajoute de l'espace pour la légende */
+}
+
+/* Ajustement du conteneur des graphiques pour une meilleure disposition */
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px; /* Augmenté de 20px à 25px pour plus d'espace entre les graphiques */
+    margin-top: 20px;
+    justify-content: center; /* Centre les éléments si l'espace est disponible */
+}
+
+/* Media queries ajustées */
+@media (max-width: 1400px) {
+    .chart-item {
+        flex: 1 1 calc(50% - 25px);
+    }
+}
+
+@media (max-width: 900px) {
+    .chart-item {
+        flex: 1 1 100%;
+        min-width: 300px; /* Retour à 300px pour les petits écrans */
+    }
+}
+
 /* PIED DE PAGE */
 footer {
     text-align: center;
