@@ -26,7 +26,7 @@ const borderColors = [
 // Fonction pour récupérer les données depuis le serveur
 async function fetchCommitData() {
     try {
-        const response = await fetch('../../backend/fetch_data.php');
+        const response = await fetch('/backend/fetch_data.php');
         const data = await response.json();
         if (data.error) {
             console.error('Erreur :', data.error);
