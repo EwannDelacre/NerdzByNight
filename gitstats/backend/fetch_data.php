@@ -59,6 +59,25 @@ foreach ($commits as $commit) {
     }
 }
 
+$languagesUrl = "https://api.github.com/repos/$owner/$repo/languages";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $languagesUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Authorization: token $token",
+    "User-Agent: PHP-cURL",
+    "Accept: application/vnd.github.v3+json"
+]);
+
+$languagesResponse = curl_exec($ch);
+curl_close($ch);
+
+$languages = [];
+if ($languagesResponse) {
+    $languages = json_decode($languagesResponse, true);
+}
+
+
 // Filtrer les utilisateurs anonymes
 $filteredData = array_filter($commitCountByAuthor, function($key) {
     return strtolower($key) !== 'unknown';
@@ -68,8 +87,8 @@ $result = [
     'commits' => $filteredData,
     'lines' => array_filter($linesByAuthor, function($key) {
         return strtolower($key) !== 'unknown';
-    }, ARRAY_FILTER_USE_KEY)
+    }, ARRAY_FILTER_USE_KEY),
+    'languages' => $languages
 ];
-
 echo json_encode($result);
 ?>
