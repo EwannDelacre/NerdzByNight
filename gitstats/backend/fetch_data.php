@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$owner = 'YvinecTom';
+$owner = 'EwannDelacre';
 $repo = 'NerdzByNight';
 $token = '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';
 
