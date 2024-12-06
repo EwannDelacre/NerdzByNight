@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 $owner = 'EwannDelacre';
 $repo = 'NerdzByNight';
-$token = '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';
+$token = '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';
 
 // Endpoint de l'API
 $url = "https://api.github.com/repos/$owner/$repo/commits";
