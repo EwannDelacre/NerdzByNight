@@ -1,0 +1,107 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date();
+    const currentDay = today.getDate(); // Récupère le jour actuel (1-31)
+
+    const grinchCases = new Set(); // Cases volées par le Grinch
+    let grinchCount = 0;
+
+    const surprises = [
+        "🎄 Une citation inspirante : 'La magie de Noël, c'est un sourire qui illumine tout.'",
+        "🎅 Une blague : Pourquoi le Père Noël est-il si joyeux ? Parce qu'il sait où sont les cadeaux !",
+        "🦌 Une animation cachée : Cliquez pour voir Rudolf danser !",
+        "✨ Une étoile scintillante : Vous illuminez la journée !",
+        "❄️ Un flocon qui fond doucement…",
+        "🎁 Une surprise mystérieuse… peut-être un petit jeu demain ?",
+        "🔔 Le carillon magique sonne la joie !",
+        "⛄ Un bonhomme de neige apparaît avec un clin d'œil !",
+        "🍪 Une recette secrète de biscuits de Noël !",
+        "📜 Un poème : 'Sous la neige étincelante, la magie de Noël se répand.'",
+        "🕯️ Une lumière douce pour réchauffer le cœur.",
+        "🎵 Une mélodie de Noël douce et joyeuse.",
+        "🔮 Une prédiction : 'Un jour magique vous attend.'",
+        "🎭 Une énigme à résoudre… Cherchez dans les étoiles !",
+        "🥂 Une invitation à lever votre verre à la joie.",
+        "🎉 Une explosion de confettis !",
+        "🌟 Une étoile filante… Faites un vœu !",
+        "📸 Une photo souvenir de l’esprit festif.",
+        "🍷 Une idée pour préparer du vin chaud maison !",
+        "🎮 Une mini-quête amusante pour gagner plus de surprises !",
+        "📖 Une histoire courte de Noël à savourer.",
+        "🎤 Une chanson classique revisitée !",
+        "🎨 Un coloriage numérique spécial fêtes.",
+        "🎆 Une fin spectaculaire avant Noël."
+    ];
+
+    // Fonction pour générer les cases
+    const createCalendar = () => {
+        const grid = document.querySelector('.grid');
+
+        for (let i = 1; i <= 24; i++) {
+            const box = document.createElement('div');
+            box.classList.add('box');
+            box.id = `box-${i}`;
+            box.dataset.day = i;
+
+            if (i <= currentDay) {
+                // Débloquer jusqu'au jour actuel
+                if (Math.random() < 0.15) {
+                    // 15% de chances que le Grinch vole la case
+                    grinchCases.add(i);
+                    grinchCount++;
+                    box.classList.add('stolen');
+                    box.innerHTML = `<span>Mwahaha !</span>`;
+                    box.addEventListener('click', () => {
+                        playGrinchSound(); // Joue le son du Grinch
+                        showModal("Oh non !", "Le Grinch a volé cette surprise ! 🎁💨");
+                    });
+                } else {
+                    // Débloquer avec surprise
+                    box.classList.add('unlocked');
+                    box.innerHTML = `<span>${i}</span>`;
+                    box.addEventListener('click', () => revealSurprise(box, i));
+                }
+            } else {
+                // Verrouiller les jours futurs
+                box.classList.add('locked');
+                box.innerHTML = `<span>${i}</span>`;
+            }
+
+            grid.appendChild(box);
+        }
+
+        // Mettre à jour le Grinch-o-mètre
+        document.getElementById('grinch-count').textContent = grinchCount;
+    };
+
+    // Fonction pour révéler une surprise
+    const revealSurprise = (box, day) => {
+        box.innerHTML = `<p>${surprises[day - 1]}</p>`;
+        box.style.pointerEvents = "none";
+        box.classList.add('revealed');
+    };
+
+    // Fonction pour afficher une fenêtre modale
+    const showModal = (title, content) => {
+        const modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2>${title}</h2>
+                <p>${content}</p>
+                <button class="close-modal">Fermer</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        const closeModalButton = modal.querySelector('.close-modal');
+        closeModalButton.addEventListener('click', () => modal.remove());
+    };
+
+    // Fonction pour jouer le son du Grinch
+    const playGrinchSound = () => {
+        const audio = new Audio('grinch.mp3'); // Chemin vers le fichier audio
+        audio.play();
+    };
+
+    createCalendar();
+});

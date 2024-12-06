@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques GitHub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>   
+    <style>.topnav {
+    overflow: hidden;
+    background-color: #3c395d;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #111c39;
+    color: white;
+  }</style>
+<div class="topnav">
+    <a href="../../organe.html">Accueil</a>
+    <a href="../../grinch/index.html">Calendrier de l'avent 🎄🎅🏼</a>
+  </div>
+    <header>
+        <h1>📊 Statistiques GitHub</h1>
+    </header>
+    <main>
+     
+        <section class="charts-container">
+            <!-- Histogramme des commits par membre -->
+            <div class="chart-item">
+                <h2>Histogramme des commits par membre</h2>
+                <canvas id="commitBarChart"></canvas>
+            </div>
+            <!-- Camembert des commits par membre -->
+            <div class="chart-item">
+                <h2>Camembert des commits par membre</h2>
+                <canvas id="commitPieChart"></canvas>
+            </div>
+            <!-- Diagramme des lignes modifiées -->
+            <div class="chart-item">
+                <h2>Modifications de lignes par membre</h2>
+                <canvas id="commitHorizontalBarChart"></canvas>
+            </div>
+            <div class="chart-item">
+                <h2>Répartition des langages</h2>
+                <canvas id="languagesChart"></canvas>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Généré dynamiquement à partir de l'API GitHub | Mis à jour toutes les 120 secondes.</p>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

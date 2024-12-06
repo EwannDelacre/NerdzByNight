@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier de l'Avent</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>.topnav {
+        overflow: hidden;
+        background-color: #3c395d;
+      }
+      
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      
+      .topnav a.active {
+        background-color: #111c39;
+        color: white;
+      }</style>
+    <div class="topnav">
+        <a href="../gitstats/frontend/index.html">Performance 👾</a>
+        <a href="../organe.html">Accueil</a>
+      </div>
+
+    <div class="calendar">
+        <h1>Calendrier de l'Avent</h1>
+        <div id="grinch-meter">
+            <p>Grinch-o-mètre : <span id="grinch-count">0</span> boîtes volées !</p>
+        </div>
+        <div class="grid">
+            <!-- Les cases seront générées ici par script.js -->
+        </div>
+    </div>
+    <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+    </div>
+    <p id="progress-text">0 / 10 Grinch</p>
+    <div id="dancing-grinch">
+        <img src="ladancedugrinch.gif" alt="Dancing Grinch" width="480" height="370" />
+    </div>
+
+    <audio id="grinch-audio" src="laught.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>

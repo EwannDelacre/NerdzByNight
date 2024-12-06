@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Changez de center à flex-start */
+    min-height: 100vh; /* Utilisez min-height au lieu de height */
+    margin: 0;
+    padding-top: 20px; /* Ajoutez un peu d'espace en haut */
+    background-color: #f0f8ff;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px; /* Ajustez selon vos besoins */
+    text-align: center;
+    padding: 0 20px; /* Ajoute un peu de padding horizontal */
+}
+  
+  h1 {
+    color: #0077b6;
+  }
+  
+  .puzzle-board {
+    width: 315px;
+    height: 315px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 20px auto;
+    border: 2px solid #0077b6;
+  }
+  
+  .pieces {
+    width: 320px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Affichage en 3 colonnes */
+    justify-content: center;
+    gap: 5px;
+    margin: 20px auto;
+  }
+  
+  .placeholder {
+    background-color: #e0f7fa; /* Fond des cases vides */
+    border: 2px dashed #0077b6;
+    width: 100px; /* Largeur fixe */
+    height: 100px; /* Hauteur fixe */
+    display: flex; /* Utiliser flexbox */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    }
+
+    .piece {
+        width: 100px;
+        height: 100px;
+        background-size: 300px 300px; /* Taille de l'image originale */
+        border: 1px solid #0077b6;
+        cursor: grab;
+        position: relative; /* Ajouter pour un positionnement précis */
+    }
+  
+  .validate-button {
+    padding: 10px 20px;
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .validate-button:hover {
+    background-color: #005f8a;
+  }
+  

@@ -1,0 +1,213 @@
+/* Style de base */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #2a2a72, #009ffd);
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Conteneur du calendrier */
+.calendar {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Grille du calendrier */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* Cases */
+.box {
+    position: relative;
+    background: #4CAF50;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+    overflow: hidden;
+}
+
+.box span {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Effets d'ouverture */
+.box.unlocked {
+    background: #FFD700;
+}
+
+.box.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.box.stolen {
+    background: #555;
+    color: #fff;
+    animation: shake 0.5s infinite;
+}
+
+
+/* Animation shake */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+/* Modale */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #4CAF50;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+}
+
+.close-modal {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.close-modal:hover {
+    background: #388E3C;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation de l'étoile qui traverse l'écran */
+.star-animation {
+    position: fixed;
+    top: 30%;
+    left: -10%;
+    width: 200px;
+    z-index: 9999; /* Assurez-vous que l'étoile a un z-index plus élevé que le modal */
+    animation: starMove 1s linear forwards;
+}
+
+@keyframes starMove {
+    100% {
+        left: 100%; /* L'étoile se déplace jusqu'à la droite de l'écran */
+    }
+}
+
+/* Animation des flocons */
+.snowflake {
+    position: absolute;
+    top: -10px; /* Commence juste au-dessus de l'écran */
+    width: 30px; /* Taille des flocons */
+    height: 30px;
+    animation: fall 5s linear infinite; /* L'animation de chute */
+}
+
+@keyframes fall {
+    0% {
+        top: -10px; /* Départ au-dessus de l'écran */
+        opacity: 1;
+    }
+    100% {
+        top: 95vh; /* Descend jusqu'en bas de l'écran */
+        opacity: 0; /* Disparition progressive */
+    }
+}
+
+.progress-container {
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+.progress-bar {
+    height: 30px;
+    width: 0%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease-in-out;
+}
+.button-container {
+    margin-top: 20px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+#dancing-grinch {
+    display: none;
+    margin-top: 20px;
+}
+
+.progress-container{
+    width: 30%;
+    height: 10%;
+}
+
