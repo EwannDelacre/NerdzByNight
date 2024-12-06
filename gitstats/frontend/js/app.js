@@ -1,6 +1,8 @@
 let barChartInstance;
 let pieChartInstance;
-let horizontalBarChartInstance; // Nouveau graphique
+let horizontalBarChartInstance;
+let languagesChartInstance;
+
 
 // Palette de couleurs
 const colors = [
@@ -45,6 +47,9 @@ async function fetchCommitData() {
         updateBarChart(labels, values);
         updatePieChart(labels, values);
         updateHorizontalBarChart(authorLabels, additions, deletions);
+        if (data.languages) {
+            updateLanguagesChart(data.languages);
+        }
     } catch (error) {
         console.error('Erreur lors de la récupération des données :', error);
     }
@@ -162,6 +167,99 @@ function updateHorizontalBarChart(labels, additions, deletions) {
         }
     });
 }
+
+// Nouvelle fonction pour le graphique des langages
+function updateLanguagesChart(languagesData) {
+    const ctx = document.getElementById('languagesChart').getContext('2d');
+
+    // Calculer le total des lignes de code
+    const total = Object.values(languagesData).reduce((a, b) => a + b, 0);
+
+    // Convertir les nombres en pourcentages et préparer les données
+    const labels = Object.keys(languagesData);
+    const data = Object.values(languagesData).map(value => ((value / total) * 100).toFixed(1));
+
+    // Générer des couleurs pour chaque langage
+    const customColors = {
+        JavaScript: '#f1e05a',
+        Python: '#3572A5',
+        HTML: '#e34c26',
+        CSS: '#563d7c',
+        PHP: '#4F5D95',
+        Java: '#b07219',
+        // Ajoutez d'autres langages selon vos besoins
+    };
+
+    const backgroundColors = labels.map(language =>
+        customColors[language] || '#' + Math.floor(Math.random()*16777215).toString(16)
+    );
+
+    if (languagesChartInstance) {
+        languagesChartInstance.destroy();
+    }
+
+    languagesChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: labels.map(label => `${label} (${data[labels.indexOf(label)]}%)`),
+            datasets: [{
+                data: data,
+                backgroundColor: backgroundColors,
+                borderColor: backgroundColors.map(color => color.replace('0.6', '1')),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, // Permet au graphique de s'adapter à son conteneur
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        padding: 20, // Augmente l'espace entre les éléments de la légende
+                        font: {
+                            size: 13, // Légèrement plus grand
+                            family: 'Arial'
+                        },
+                        // Assure que le texte ne soit pas coupé
+                        generateLabels: function(chart) {
+                            const datasets = chart.data.datasets;
+                            return chart.data.labels.map((label, i) => ({
+                                text: label,
+                                fillStyle: datasets[0].backgroundColor[i],
+                                hidden: false,
+                                lineCap: 'butt',
+                                lineDash: [],
+                                lineDashOffset: 0,
+                                lineJoin: 'miter',
+                                lineWidth: 1,
+                                strokeStyle: datasets[0].backgroundColor[i],
+                                pointStyle: 'circle',
+                                index: i
+                            }));
+                        },
+                        boxWidth: 15, // Réduit la taille du carré de couleur
+                        boxHeight: 15
+                    },
+                    maxWidth: 250 // Définit une largeur maximale pour la légende
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ` ${context.label}`;
+                        }
+                    }
+                }
+            },
+            layout: {
+                padding: {
+                    right: 10 // Ajoute un peu de padding à droite
+                }
+            }
+        }
+    });
+}
+
 
 // Charger les données au démarrage
 fetchCommitData();
