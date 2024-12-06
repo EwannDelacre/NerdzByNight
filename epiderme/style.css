@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#main-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: brown;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#peau {
+    height: 40%;
+    width: 100%;
+    background-color: aqua;
+    position: relative;
+    transition: 0.2s ease;
+    border-radius: 10px;
+}
+
+#nerveux {
+    height: 40%;
+    width: 40%;
+    background-color: aqua;
+    position: relative;
+    transition: 0.2s ease;
+    border-radius: 10px;
+}
+
+#point {
+    width: 20px; /* Taille initiale */
+    height: 20px; /* Taille initiale */
+    background-color: #407beb; /* Couleur du point */
+    border-radius: 50%; /* Rendre le point circulaire */
+    transition: transform 0.3s ease; /* Transition pour l'effet de grossissement */
+    display: inline-block; /* Permet de centrer le point */
+    margin: 20px; /* Espace autour du point */
+    position: absolute;
+    top : 30px;
+    right: 30px;
+}
+
+#point:hover {
+    transform: scale(2); /* Grossir le point au survol */
+}
+
+#epiderme{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+#explication {
+    width: 30%;
+    height: 30%;
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 30px;
+}
+
+#container {
+    max-width: 500px;
+    margin: 50px;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#coucheocean {
+    margin: 20px 0px;
+    width: 100%;
+    height: 50%;
+}
+
+#center-column {
+    display: flex;
+    width: 20%;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.column {
+    height: 100%;
+    position: relative; /* Conserve les enfants absolus dans les limites */
+    transition: transform 0.5s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+#left-column,
+#right-column {
+    width: 40%;
+    /* Prend tout l'espace restant */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-container {
+    width: 300px;
+    padding: 20px;
+    background-color: lightgray;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+#recepteurnerveux{
+
+}
+
